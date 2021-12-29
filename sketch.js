@@ -80,7 +80,6 @@ function draw() {
     let b = Math.floor(Math.random() * (255 - 0) + 0);
     fill(r, g, b);
     text('Snek', 150, 150);
-    button
     frameRate(3);
     updateSnakeCoordinates();
   }
