@@ -3,7 +3,7 @@
 let numSegments = 10;
 let direction = 'right';
 
-const xStart = 0; //starting x coordinate for snake
+const xStart = 190; //starting x coordinate for snake
 const yStart = 250; //starting y coordinate for snake
 const diff = 10;
 
@@ -80,8 +80,39 @@ function draw() {
     let b = Math.floor(Math.random() * (255 - 0) + 0);
     fill(r, g, b);
     text('Snek', 150, 150);
+    strokeWeight(10);
+    stroke(r, g, b);
     frameRate(3);
-    updateSnakeCoordinates();
+    for (let i = 0; i < numSegments - 1; i++) {
+      line(xCor[i], yCor[i], xCor[i + 1], yCor[i + 1]);
+    }
+    updateSnakeCoordinatesMenu();
+  }
+}
+
+function updateSnakeCoordinatesMenu() {
+  for (let i = 0; i < numSegments - 1; i++) {
+    xCor[i] = xCor[i + 2];
+    yCor[i] = yCor[i + 2];
+  }
+  let num = Math.floor(Math.random() * (4 - 1) + 1);
+  switch (num) {
+    case 1:
+      xCor[numSegments - 2] = xCor[numSegments - 4] + diff;
+      yCor[numSegments - 2] = yCor[numSegments - 4];
+      break;
+    case 2:
+      xCor[numSegments - 2] = xCor[numSegments - 4];
+      yCor[numSegments - 2] = yCor[numSegments - 4] - diff;
+      break;
+    case 3:
+      xCor[numSegments - 2] = xCor[numSegments - 2] - diff;
+      yCor[numSegments - 1] = yCor[numSegments - 2];
+      break;
+    case 4:
+      xCor[numSegments - 1] = xCor[numSegments - 2];
+      yCor[numSegments - 1] = yCor[numSegments - 2] + diff;
+      break;
   }
 }
 
